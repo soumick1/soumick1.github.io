@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soumick Sarker – AI Researcher & Data Scientist</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Base Styles -->
+  <style>
+    /* Root Colors */
+    :root {
+      --primary: #0e7490;
+      --primary-light: #22d3ee;
+      --accent: #3b82f6;
+      --bg: #f9fafb;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #64748b;
+      --heading-font: 'Playfair Display', serif;
+      --body-font: 'Inter', sans-serif;
+    }
+
+    /* Global Resets */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: var(--body-font);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: var(--primary-light);
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--heading-font);
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: var(--surface);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+    .logo {
+      font-family: var(--heading-font);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      font-weight: 600;
+    }
+    nav li a {
+      padding: 0.5rem 0;
+      position: relative;
+    }
+    nav li a::after {
+      content: '';
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    nav li a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    #hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 1rem 6rem;
+      position: relative;
+      color: #fff;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/hero-bg.jpg') center/cover no-repeat;
+    }
+    #hero img.profile {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+    }
+    #hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    #hero p.tagline {
+      font-size: 1.25rem;
+      color: #e2e8f0;
+      margin-bottom: 2rem;
+      max-width: 700px;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.75rem 1.75rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .btn:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+
+    /* Section Titles */
+    section {
+      padding: 6rem 1rem;
+    }
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    section h2::after {
+      content: '';
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      display: block;
+      margin: 0.5rem auto 0;
+    }
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Card Grid */
+    .grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .card {
+      background: var(--surface);
+      border-radius: 1rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+    .card h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+      color: var(--accent);
+    }
+    .card p.meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    .card p {
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+      color: var(--text);
+    }
+    .card a {
+      align-self: flex-start;
+      font-weight: 600;
+      color: var(--accent);
+      transition: color 0.2s ease;
+    }
+    .card a:hover {
+      color: var(--primary);
+    }
+
+    /* Timeline */
+    .timeline {
+      border-left: 4px solid var(--accent);
+      padding-left: 2rem;
+      position: relative;
+    }
+    .event {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .event:before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      position: absolute;
+      left: -30px;
+      top: 2px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .event h4 {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+    }
+    .event span {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--surface);
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* Responsive Typography */
+    @media (max-width: 768px) {
+      #hero h1 {
+        font-size: 2.5rem;
+      }
+      #hero p.tagline {
+        font-size: 1rem;
+      }
+      section h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Soumick&nbsp;Sarker</div>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero">
+      <img src="assets/Profile_Pic.jpg" alt="Soumick Sarker" class="profile">
+      <h1>Hi, I'm Soumick</h1>
+      <p class="tagline">AI Researcher &amp; Data Scientist @ Fidelity Investments</p>
+      <a href="assets/Soumick_resume_6_2_24.pdf" class="btn">Download CV</a>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="content">
+        <p>I am a data scientist and AI researcher based in Bangalore, India, currently pioneering intelligent solutions at <strong>Fidelity Investments</strong>. My work spans vision transformers, uncertainty quantification, and large‑scale NLP systems. I have authored peer‑reviewed articles in journals such as <em>Information Systems Frontiers</em> and <em>Knowledge Based Systems</em>.</p>
+        <p>I thrive on transforming complex, uncertain data into actionable insight, with a focus on interpretable and resource‑efficient AI. My focus areas going forward are cognitive AI and visual context reasoning.</p>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research">
+      <h2>Featured Publications</h2>
+      <div class="container grid">
+        <article class="card">
+          <h3>FGI‑CogViT: Fuzzy Granule‑based Interpretable Cognitive Vision Transformer</h3>
+          <p class="meta">Information Systems Frontiers, 2024</p>
+          <p>A new vision transformer, namely Fuzzy Granule-based Interpretable Cognitive Vision Transformer (FGI-CogViT) which has three parts, namely feature extraction, fuzzy logic-based granulation, and I-CogViT-based classification. Various vision and statistical features are computed over the MRI scan image(s).</p>
+          <a href="https://doi.org/10.1007/s10796-024-10541-7" target="_blank">Read Paper →</a>
+        </article>
+        <article class="card">
+          <h3>Real-time fall detection on road using transfer learning-based granulated Bi-LSTM</h3>
+          <p class="meta">Knowledge-Based Systems, Elsevier</p>
+          <p>In this study, a new deep learning-based model, namely, transfer learning-based granulated Bi-LSTM (TLG-LSTM), is developed for fall detection on roads. The TLG-LSTM can handle the uncertainty issue arising between various ‘Fall’ and ‘No Fall’ events in complex scenarios concerning both indoor (i.e., home) and outdoor (i.e., road) areas.</p>
+          <a href="https://doi.org/10.1016/j.knosys.2025.113038" target="_blank">Read Paper →</a>
+        </article>
+        <article class="card">
+          <h3>NovaNet: A Novel Method for Enhanced Pothole Detection on Road</h3>
+          <p class="meta">2024 8th International Conference on System Reliability and Safety (ICSRS)</p>
+          <p>Incorporating elements such as spatial awareness, gated convolutional operations, and attention mechanisms, NovaNet offers enhanced detection capabilities. Its multi-scale feature fusion block adeptly combines semantic details from various resolutions, ensuring comprehensive segmentation.</p>
+          <a href="https://doi.org/10.1109/ICSRS63046.2024.10927473" target="_blank">Read Paper →</a>
+        </article>
+        <article class="card">
+          <h3>Quantasio: A Generalized Neural Framework for Solving 3D Navier-Stokes Dynamics</h3>
+          <p class="meta">IEEE Transactions for Artificial Intelligence (revise &amp; resubmit)</p>
+          <p>An energy‑stable transformer that solves 3D Navier‑Stokes with &lt;1 GB VRAM, outperforming PINNs.</p>
+          <a href="" target="_blank">Paper Under Review at IEEE TAI</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Open‑Source Projects</h2>
+      <div class="container grid">
+        <article class="card">
+          <h3>Quantasio</h3>
+          <p class="meta">Python • PyTorch</p>
+          <p>Fast mesh‑free solver for general PDEs with adaptive loss weighting and energy‑based attention.</p>
+          <a href="https://github.com/soumick1/Quantasio" target="_blank">GitHub →</a>
+        </article>
+        <article class="card">
+          <h3>Energy‑Based Attention Flow</h3>
+          <p class="meta">Research prototype</p>
+          <p>A novel attention mechanism modelling token interaction as physical particle dynamics.</p>
+          <a href="https://github.com/soumick1/energy_well_attention" target="_blank">GitHub →</a>
+        </article>
+        <article class="card">
+          <h3>NovaNet</h3>
+          <p class="meta">Computer Vision</p>
+          <p>NovaNet: A novel image segmentation architecture specially for difficult granular segmentation like potholes on the  road.</p>
+          <a href="https://github.com/soumick1/nova_net" target="_blank">GitHub →</a>
+        </article>
+        <article class="card">
+          <h3>Fin-ExBERT</h3>
+          <p class="meta">NLP • Finance</p>
+          <p>A specialized architecture for finance domain extractive summarization from long contextual texts such as call transcript</p>
+          <a href="" target="_blank">In Progress →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section id="timeline">
+      <h2>Career Timeline</h2>
+      <div class="content timeline">
+        <div class="event">
+          <h4>Data Science Intern – Fidelity Investments</h4>
+          <span>Jun 2023 – Aug 2023, Bangalore</span>
+        </div>
+        <div class="event">
+          <h4>B.Tech/ M.Tech – IIT Kharagpur (Best Project Award)</h4>
+          <span>2019 – 2024</span>
+        </div>
+        <div class="event">
+          <h4>Data Scientist – Fidelity Investments</h4>
+          <span>Jun 2024 – Present, Bangalore</span>
+        </div>
+        <div class="event">
+          <h4>PhD (incoming) – NTU, Singapore</h4>
+          <span>Aug 2025 –</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Get in Touch</h2>
+      <div class="content" style="text-align:center">
+        <p><strong>Email:</strong> <a href="mailto:soumicksarker9@gmail.com">soumicksarker9@gmail.com</a></p>
+        <p>
+          <a href="https://github.com/soumick1" target="_blank">GitHub</a> ·
+          <a href="https://linkedin.com/in/soumick-sarker" target="_blank">LinkedIn</a> ·
+          <a href="https://scholar.google.com/citations?user=dTgcWjMAAAAJ" target="_blank">Google Scholar</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; <span id="year"></span> Soumick Sarker &middot; Made with ❤️ &amp; GitHub Pages
+  </footer>
+
+  <!-- Year Script -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
