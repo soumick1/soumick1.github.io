@@ -5,432 +5,1061 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Soumick Sarker – AI Researcher & Data Scientist</title>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <!-- Base Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    /* Root Colors */
+    /* ====================== ROOT & RESETS ====================== */
     :root {
-      --primary: #0e7490;
-      --primary-light: #22d3ee;
+      --primary: #0891b2;
+      --primary-dark: #0e7490;
+      --primary-light: #06b6d4;
       --accent: #3b82f6;
-      --bg: #f9fafb;
+      --accent-dark: #2563eb;
+      --bg-main: #fafafa;
+      --bg-alt: #f4f4f5;
       --surface: #ffffff;
-      --text: #1f2937;
-      --muted: #64748b;
-      --heading-font: 'Playfair Display', serif;
+      --text-primary: #18181b;
+      --text-secondary: #52525b;
+      --text-muted: #71717a;
+      --border-light: #e4e4e7;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.12);
+      --gradient-primary: linear-gradient(135deg, #0891b2 0%, #3b82f6 100%);
+      --gradient-hero: linear-gradient(135deg, rgba(8, 145, 178, 0.95) 0%, rgba(59, 130, 246, 0.95) 100%);
+      --heading-font: 'Space Grotesk', sans-serif;
       --body-font: 'Inter', sans-serif;
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Global Resets */
-    *, *::before, *::after {
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 64px;
     }
+
     body {
       font-family: var(--body-font);
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-main);
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
-    a {
-      color: var(--primary);
-      text-decoration: none;
-      transition: color 0.2s ease;
+
+    ::selection {
+      background: var(--primary-light);
+      color: white;
     }
-    a:hover {
-      color: var(--primary-light);
-    }
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
+
+    /* ====================== TYPOGRAPHY ====================== */
     h1, h2, h3, h4, h5, h6 {
       font-family: var(--heading-font);
-      color: var(--primary);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
       margin-bottom: 1rem;
     }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
     p {
       margin-bottom: 1rem;
+      color: var(--text-secondary);
+      font-size: 1.0625rem;
+      line-height: 1.75;
     }
 
-    /* Container */
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--accent-dark);
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    em {
+      color: var(--text-secondary);
+    }
+
+    /* ====================== CONTAINER ====================== */
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 0 2rem;
     }
 
-    /* Header & Navigation */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+    }
+
+    /* ====================== HEADER & NAV ====================== */
     header {
-      background: var(--surface);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border-light);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
+      transition: all var(--transition-base);
     }
+
+    header.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 64px;
+      height: 72px;
     }
+
     .logo {
       font-family: var(--heading-font);
       font-size: 1.5rem;
       font-weight: 700;
-      color: var(--accent);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
     }
+
     nav ul {
       display: flex;
-      gap: 2rem;
+      gap: 2.5rem;
       list-style: none;
-      font-weight: 600;
     }
+
     nav li a {
+      font-weight: 500;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
       padding: 0.5rem 0;
       position: relative;
+      transition: color var(--transition-fast);
     }
+
     nav li a::after {
       content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
       width: 0;
       height: 2px;
-      background: var(--accent);
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      transition: width 0.3s ease;
+      background: var(--gradient-primary);
+      transition: width var(--transition-base);
     }
+
+    nav li a:hover {
+      color: var(--primary);
+    }
+
     nav li a:hover::after {
       width: 100%;
     }
 
-    /* Hero Section */
+    /* Mobile Menu Toggle */
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 0.375rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-toggle span {
+      width: 1.5rem;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all var(--transition-base);
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 72px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 72px);
+        background: var(--surface);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: left var(--transition-base);
+        box-shadow: var(--shadow-lg);
+      }
+
+      nav ul.active {
+        left: 0;
+      }
+
+      .mobile-toggle {
+        display: flex;
+      }
+
+      .mobile-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(0.5rem, 0.5rem);
+      }
+
+      .mobile-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+      }
+    }
+
+    /* ====================== HERO SECTION ====================== */
     #hero {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 8rem 1rem 6rem;
-      position: relative;
-      color: #fff;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/hero-bg.jpg') center/cover no-repeat;
-    }
-    #hero img.profile {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #fff;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      margin-bottom: 1.5rem;
-    }
-    #hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      letter-spacing: 1px;
-    }
-    #hero p.tagline {
-      font-size: 1.25rem;
-      color: #e2e8f0;
-      margin-bottom: 2rem;
-      max-width: 700px;
-    }
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      padding: 0.75rem 1.75rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    .btn:hover {
-      background: #2563eb;
-      transform: translateY(-2px);
+      min-height: 90vh;
+      padding: 6rem 2rem;
+      background: var(--gradient-hero), url('assets/hero-bg.jpg') center/cover no-repeat;
+      background-attachment: fixed;
+      overflow: hidden;
     }
 
-    /* Section Titles */
-    section {
-      padding: 6rem 1rem;
-    }
-    section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    section h2::after {
+    #hero::before {
       content: '';
-      width: 60px;
-      height: 3px;
-      background: var(--accent);
-      display: block;
-      margin: 0.5rem auto 0;
-    }
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+      animation: pulse 8s ease-in-out infinite;
     }
 
-    /* Card Grid */
-    .grid {
-      display: grid;
-      gap: 2.5rem;
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
     }
-    @media (min-width: 768px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
+
+    #hero .profile-wrapper {
+      position: relative;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    #hero img.profile {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 0 10px rgba(255, 255, 255, 0.1);
+      transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+    }
+
+    #hero img.profile:hover {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 0 12px rgba(255, 255, 255, 0.15);
+    }
+
+    #hero h1 {
+      color: white;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    #hero .tagline {
+      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.5s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all var(--transition-base);
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      color: var(--accent);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    .scroll-indicator::after {
+      content: '↓';
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ====================== SECTIONS ====================== */
+    section {
+      padding: 7rem 0;
+      position: relative;
+    }
+
+    section:nth-child(even) {
+      background: var(--surface);
+    }
+
+    section h2 {
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: 3.5rem;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+
+    .section-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: -2rem auto 4rem;
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+    }
+
+    /* ====================== ABOUT SECTION ====================== */
+    #about .content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 2rem;
+    }
+
+    #about p {
+      font-size: 1.125rem;
+      line-height: 1.8;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(8, 145, 178, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+      border-left: 4px solid var(--primary);
+      padding: 2rem;
+      border-radius: 0.75rem;
+      margin: 2rem 0;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ====================== CARD GRID ====================== */
+    .grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
     @media (min-width: 1024px) {
-      .grid {
+      .grid-3 {
         grid-template-columns: repeat(3, 1fr);
       }
     }
+
     .card {
       background: var(--surface);
       border-radius: 1rem;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
       padding: 2rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: all var(--transition-base);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    }
-    .card h3 {
-      margin-bottom: 0.75rem;
-      font-size: 1.25rem;
-      color: var(--accent);
-    }
-    .card p.meta {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      font-style: italic;
-    }
-    .card p {
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
-      color: var(--text);
-    }
-    .card a {
-      align-self: flex-start;
-      font-weight: 600;
-      color: var(--accent);
-      transition: color 0.2s ease;
-    }
-    .card a:hover {
-      color: var(--primary);
+      position: relative;
+      overflow: hidden;
     }
 
-    /* Timeline */
-    .timeline {
-      border-left: 4px solid var(--accent);
-      padding-left: 2rem;
-      position: relative;
-    }
-    .event {
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    .event:before {
+    .card::before {
       content: '';
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent);
       position: absolute;
-      left: -30px;
-      top: 2px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-    .event h4 {
-      font-weight: 600;
-      font-size: 1.125rem;
-      margin-bottom: 0.25rem;
-    }
-    .event span {
-      font-size: 0.9rem;
-      color: var(--muted);
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition-base);
     }
 
-    /* Footer */
-    footer {
-      background: var(--surface);
-      padding: 2rem 1rem;
-      text-align: center;
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card h3 {
+      font-size: 1.375rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+      transition: color var(--transition-fast);
+    }
+
+    .card:hover h3 {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card .meta {
       font-size: 0.875rem;
-      color: var(--muted);
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    /* Responsive Typography */
+    .card p {
+      flex-grow: 1;
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      transition: all var(--transition-fast);
+      font-size: 0.9375rem;
+    }
+
+    .card-link::after {
+      content: '→';
+      transition: transform var(--transition-fast);
+    }
+
+    .card:hover .card-link::after {
+      transform: translateX(4px);
+    }
+
+    /* ====================== TIMELINE ====================== */
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-left: 3rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: 2px;
+    }
+
+    .event {
+      position: relative;
+      margin-bottom: 3rem;
+      padding: 1.5rem 2rem;
+      background: var(--surface);
+      border-radius: 0.75rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: all var(--transition-base);
+    }
+
+    .event:hover {
+      transform: translateX(8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .event::before {
+      content: '';
+      position: absolute;
+      left: -3.5rem;
+      top: 2rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 4px solid var(--primary);
+      box-shadow: 0 0 0 4px var(--bg-main), var(--shadow-md);
+      transition: all var(--transition-base);
+    }
+
+    .event:hover::before {
+      transform: scale(1.2);
+      border-color: var(--accent);
+    }
+
+    .event h4 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .event span {
+      display: block;
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
     @media (max-width: 768px) {
-      #hero h1 {
-        font-size: 2.5rem;
+      .timeline {
+        padding-left: 2rem;
       }
-      #hero p.tagline {
-        font-size: 1rem;
+
+      .event::before {
+        left: -2.5rem;
       }
-      section h2 {
-        font-size: 2rem;
+    }
+
+    /* ====================== CONTACT SECTION ====================== */
+    #contact {
+      background: var(--gradient-hero), url('assets/hero-bg.jpg') center/cover no-repeat;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+    }
+
+    #contact h2 {
+      color: white;
+    }
+
+    #contact h2::after {
+      background: white;
+    }
+
+    #contact p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.125rem;
+    }
+
+    #contact a {
+      color: white;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+      text-decoration-color: rgba(255, 255, 255, 0.4);
+    }
+
+    #contact a:hover {
+      text-decoration-color: white;
+      transform: translateY(-2px);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .social-links a {
+      font-size: 1.125rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all var(--transition-base);
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ====================== FOOTER ====================== */
+    footer {
+      background: var(--text-primary);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      font-size: 0.9375rem;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* ====================== ANIMATIONS ====================== */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      animation: slideInLeft 0.8s ease-out forwards;
+    }
+
+    @keyframes slideInLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* ====================== UTILITIES ====================== */
+    .text-center {
+      text-align: center;
+    }
+
+    .mb-2 {
+      margin-bottom: 2rem;
+    }
+
+    .mb-3 {
+      margin-bottom: 3rem;
+    }
+
+    /* ====================== RESPONSIVE ====================== */
+    @media (max-width: 768px) {
+      section {
+        padding: 5rem 0;
+      }
+
+      #hero {
+        min-height: 85vh;
+        padding: 4rem 1.25rem;
+      }
+
+      #hero img.profile {
+        width: 160px;
+        height: 160px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      header,
+      footer,
+      .scroll-indicator,
+      .btn-group {
+        display: none;
+      }
+
+      section {
+        page-break-inside: avoid;
       }
     }
   </style>
 </head>
 <body>
-  <header>
+  <!-- Header -->
+  <header id="header">
     <div class="container">
       <nav>
-        <div class="logo">Soumick&nbsp;Sarker</div>
-        <ul>
+        <div class="logo">Soumick Sarker</div>
+        <ul id="nav-menu">
           <li><a href="#about">About</a></li>
           <li><a href="#research">Research</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#timeline">Timeline</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        <div class="mobile-toggle" id="mobile-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section id="hero">
-      <img src="assets/Profile_Pic.jpg" alt="Soumick Sarker" class="profile">
-      <h1>Hi, I'm Soumick</h1>
-      <p class="tagline">AI Researcher &amp; Data Scientist @ Fidelity Investments</p>
-      <a href="assets/Soumick_resume_6_2_24.pdf" class="btn">Download CV</a>
+      <div class="hero-content">
+        <div class="profile-wrapper">
+          <img src="assets/Profile_Pic.jpg" alt="Soumick Sarker" class="profile">
+        </div>
+        <h1>Hi, I'm Soumick</h1>
+        <p class="tagline">AI Researcher & Data Scientist @ Fidelity Investments<br>Specializing in Vision Transformers, NLP & Uncertainty Quantification</p>
+        <div class="btn-group">
+          <a href="assets/Soumick_resume_6_2_24.pdf" class="btn btn-primary">Download CV</a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+      <div class="scroll-indicator"></div>
     </section>
 
-    <!-- About -->
+    <!-- About Section -->
     <section id="about">
       <h2>About Me</h2>
-      <div class="content">
-        <p>I am a data scientist and AI researcher based in Bangalore, India, currently pioneering intelligent solutions at <strong>Fidelity Investments</strong>. My work spans vision transformers, uncertainty quantification, and large‑scale NLP systems. I have authored peer‑reviewed articles in journals such as <em>Information Systems Frontiers</em> and <em>Knowledge Based Systems</em>.</p>
-        <p>I thrive on transforming complex, uncertain data into actionable insight, with a focus on interpretable and resource‑efficient AI. My focus areas going forward are cognitive AI and visual context reasoning.</p>
+      <div class="container">
+        <div class="content">
+          <p>I am a data scientist and AI researcher based in Bangalore, India, currently pioneering intelligent solutions at <strong>Fidelity Investments</strong>. My work spans vision transformers, uncertainty quantification, and large‑scale NLP systems. I have authored peer‑reviewed articles in journals such as <em>Information Systems Frontiers</em> and <em>Knowledge Based Systems</em>.</p>
+          
+          <div class="highlight-box">
+            <p>I thrive on transforming complex, uncertain data into actionable insight, with a focus on interpretable and resource‑efficient AI. My focus areas going forward are <strong>cognitive AI</strong> and <strong>visual context reasoning</strong>.</p>
+          </div>
+          
+          <p>Starting August 2025, I will be pursuing my PhD at <strong>Nanyang Technological University (NTU), Singapore</strong>, where I'll continue pushing the boundaries of artificial intelligence and machine learning research.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Research -->
+    <!-- Research Section -->
     <section id="research">
       <h2>Featured Publications</h2>
-      <div class="container grid">
-        <article class="card">
-          <h3>FGI‑CogViT: Fuzzy Granule‑based Interpretable Cognitive Vision Transformer</h3>
-          <p class="meta">Information Systems Frontiers, 2024</p>
-          <p>A new vision transformer, namely Fuzzy Granule-based Interpretable Cognitive Vision Transformer (FGI-CogViT) which has three parts, namely feature extraction, fuzzy logic-based granulation, and I-CogViT-based classification. Various vision and statistical features are computed over the MRI scan image(s).</p>
-          <a href="https://doi.org/10.1007/s10796-024-10541-7" target="_blank">Read Paper →</a>
-        </article>
-        <article class="card">
-          <h3>Real-time fall detection on road using transfer learning-based granulated Bi-LSTM</h3>
-          <p class="meta">Knowledge-Based Systems, Elsevier</p>
-          <p>In this study, a new deep learning-based model, namely, transfer learning-based granulated Bi-LSTM (TLG-LSTM), is developed for fall detection on roads. The TLG-LSTM can handle the uncertainty issue arising between various ‘Fall’ and ‘No Fall’ events in complex scenarios concerning both indoor (i.e., home) and outdoor (i.e., road) areas.</p>
-          <a href="https://doi.org/10.1016/j.knosys.2025.113038" target="_blank">Read Paper →</a>
-        </article>
-        <article class="card">
-          <h3>NovaNet: A Novel Method for Enhanced Pothole Detection on Road</h3>
-          <p class="meta">2024 8th International Conference on System Reliability and Safety (ICSRS)</p>
-          <p>Incorporating elements such as spatial awareness, gated convolutional operations, and attention mechanisms, NovaNet offers enhanced detection capabilities. Its multi-scale feature fusion block adeptly combines semantic details from various resolutions, ensuring comprehensive segmentation.</p>
-          <a href="https://doi.org/10.1109/ICSRS63046.2024.10927473" target="_blank">Read Paper →</a>
-        </article>
-        <article class="card">
-          <h3>Quantasio: A Generalized Neural Framework for Solving 3D Navier-Stokes Dynamics</h3>
-          <p class="meta">IEEE Transactions for Artificial Intelligence</p>
-          <p>An energy‑stable transformer that solves 3D Navier‑Stokes with &lt;1 GB VRAM, outperforming PINNs.</p>
-          <a href="https://ieeexplore.ieee.org/abstract/document/11045321" target="_blank">Read Paper</a>
-        </article>
+      <p class="section-intro">Peer-reviewed research in top-tier journals and conferences</p>
+      <div class="container">
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>FGI‑CogViT: Fuzzy Granule‑based Interpretable Cognitive Vision Transformer</h3>
+            <p class="meta">Information Systems Frontiers, 2024</p>
+            <p>A new vision transformer, namely Fuzzy Granule-based Interpretable Cognitive Vision Transformer (FGI-CogViT) which has three parts, namely feature extraction, fuzzy logic-based granulation, and I-CogViT-based classification. Various vision and statistical features are computed over the MRI scan image(s).</p>
+            <a href="https://doi.org/10.1007/s10796-024-10541-7" target="_blank" class="card-link">Read Paper</a>
+          </article>
+
+          <article class="card">
+            <h3>Real-time Fall Detection on Road Using Transfer Learning-based Granulated Bi-LSTM</h3>
+            <p class="meta">Knowledge-Based Systems, Elsevier</p>
+            <p>In this study, a new deep learning-based model, namely, transfer learning-based granulated Bi-LSTM (TLG-LSTM), is developed for fall detection on roads. The TLG-LSTM can handle the uncertainty issue arising between various 'Fall' and 'No Fall' events in complex scenarios concerning both indoor (i.e., home) and outdoor (i.e., road) areas.</p>
+            <a href="https://doi.org/10.1016/j.knosys.2025.113038" target="_blank" class="card-link">Read Paper</a>
+          </article>
+
+          <article class="card">
+            <h3>NovaNet: A Novel Method for Enhanced Pothole Detection on Road</h3>
+            <p class="meta">2024 8th International Conference on System Reliability and Safety (ICSRS)</p>
+            <p>Incorporating elements such as spatial awareness, gated convolutional operations, and attention mechanisms, NovaNet offers enhanced detection capabilities. Its multi-scale feature fusion block adeptly combines semantic details from various resolutions, ensuring comprehensive segmentation.</p>
+            <a href="https://doi.org/10.1109/ICSRS63046.2024.10927473" target="_blank" class="card-link">Read Paper</a>
+          </article>
+
+          <article class="card">
+            <h3>Quantasio: A Generalized Neural Framework for Solving 3D Navier-Stokes Dynamics</h3>
+            <p class="meta">IEEE Transactions for Artificial Intelligence</p>
+            <p>An energy‑stable transformer that solves 3D Navier‑Stokes with &lt;1 GB VRAM, outperforming PINNs.</p>
+            <a href="https://ieeexplore.ieee.org/abstract/document/11045321" target="_blank" class="card-link">Read Paper</a>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- Projects -->
+    <!-- Projects Section -->
     <section id="projects">
       <h2>Open‑Source Projects</h2>
-      <div class="container grid">
-        <article class="card">
-          <h3>Quantasio</h3>
-          <p class="meta">Python • PyTorch</p>
-          <p>Fast mesh‑free solver for general PDEs with adaptive loss weighting and energy‑based attention.</p>
-          <a href="https://github.com/soumick1/Quantasio" target="_blank">GitHub →</a>
-        </article>
-        <article class="card">
-          <h3>Energy‑Based Attention Flow</h3>
-          <p class="meta">Research prototype</p>
-          <p>A novel attention mechanism modelling token interaction as physical particle dynamics.</p>
-          <a href="https://github.com/soumick1/energy_well_attention" target="_blank">GitHub →</a>
-        </article>
-        <article class="card">
-          <h3>NovaNet</h3>
-          <p class="meta">Computer Vision</p>
-          <p>NovaNet: A novel image segmentation architecture specially for difficult granular segmentation like potholes on the  road.</p>
-          <a href="https://github.com/soumick1/nova_net" target="_blank">GitHub →</a>
-        </article>
-        <article class="card">
-          <h3>Fin-ExBERT</h3>
-          <p class="meta">NLP • Finance</p>
-          <p>A specialized architecture for finance domain extractive summarization from long contextual texts such as call transcript</p>
-          <a href="" target="_blank">In Progress →</a>
-        </article>
+      <p class="section-intro">Building tools and frameworks for the AI research community</p>
+      <div class="container">
+        <div class="grid">
+          <article class="card">
+            <h3>Quantasio</h3>
+            <p class="meta">Python • PyTorch</p>
+            <p>Fast mesh‑free solver for general PDEs with adaptive loss weighting and energy‑based attention.</p>
+            <a href="https://github.com/soumick1/Quantasio" target="_blank" class="card-link">View on GitHub</a>
+          </article>
+
+          <article class="card">
+            <h3>Energy‑Based Attention Flow</h3>
+            <p class="meta">Research Prototype</p>
+            <p>A novel attention mechanism modelling token interaction as physical particle dynamics.</p>
+            <a href="https://github.com/soumick1/energy_well_attention" target="_blank" class="card-link">View on GitHub</a>
+          </article>
+
+          <article class="card">
+            <h3>NovaNet</h3>
+            <p class="meta">Computer Vision</p>
+            <p>NovaNet: A novel image segmentation architecture specially for difficult granular segmentation like potholes on the road.</p>
+            <a href="https://github.com/soumick1/nova_net" target="_blank" class="card-link">View on GitHub</a>
+          </article>
+
+          <article class="card">
+            <h3>Fin-ExBERT</h3>
+            <p class="meta">NLP • Finance</p>
+            <p>A specialized architecture for finance domain extractive summarization from long contextual texts such as call transcripts.</p>
+            <a href="#" class="card-link">In Progress</a>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- Timeline -->
+    <!-- Timeline Section -->
     <section id="timeline">
       <h2>Career Timeline</h2>
-      <div class="content timeline">
-        <div class="event">
-          <h4>Data Science Intern – Fidelity Investments</h4>
-          <span>Jun 2023 – Aug 2023, Bangalore</span>
-        </div>
-        <div class="event">
-          <h4>B.Tech/ M.Tech – IIT Kharagpur (Best Project Award)</h4>
-          <span>2019 – 2024</span>
-        </div>
-        <div class="event">
-          <h4>Data Scientist – Fidelity Investments</h4>
-          <span>Jun 2024 – Present, Bangalore</span>
-        </div>
-        <div class="event">
-          <h4>PhD (incoming) – NTU, Singapore</h4>
-          <span>Aug 2025 –</span>
+      <div class="container">
+        <div class="timeline">
+          <div class="event">
+            <h4>Data Science Intern – Fidelity Investments</h4>
+            <span>Jun 2023 – Aug 2023 • Bangalore, India</span>
+          </div>
+          
+          <div class="event">
+            <h4>B.Tech/M.Tech – IIT Kharagpur</h4>
+            <span>2019 – 2024 • Received Best Project Award</span>
+          </div>
+          
+          <div class="event">
+            <h4>Data Scientist – Fidelity Investments</h4>
+            <span>Jun 2024 – Present • Bangalore, India</span>
+          </div>
+          
+          <div class="event">
+            <h4>PhD Student (Incoming) – NTU, Singapore</h4>
+            <span>Aug 2025 – </span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact Section -->
     <section id="contact">
       <h2>Get in Touch</h2>
-      <div class="content" style="text-align:center">
-        <p><strong>Email:</strong> <a href="mailto:soumicksarker9@gmail.com">soumicksarker9@gmail.com</a></p>
-        <p>
-          <a href="https://github.com/soumick1" target="_blank">GitHub</a> ·
-          <a href="https://linkedin.com/in/soumick-sarker" target="_blank">LinkedIn</a> ·
-          <a href="https://scholar.google.com/citations?user=dTgcWjMAAAAJ" target="_blank">Google Scholar</a>
-        </p>
+      <div class="container">
+        <div class="content text-center">
+          <p class="mb-2"><strong>Email:</strong> <a href="mailto:soumicksarker9@gmail.com">soumicksarker9@gmail.com</a></p>
+          <div class="social-links">
+            <a href="https://github.com/soumick1" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/soumick-sarker" target="_blank">LinkedIn</a>
+            <a href="https://scholar.google.com/citations?user=dTgcWjMAAAAJ" target="_blank">Google Scholar</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
   <footer>
-    &copy; <span id="year"></span> Soumick Sarker &middot; Made with ❤️ &amp; GitHub Pages
+    <div class="container">
+      &copy; <span id="year"></span> Soumick Sarker · Designed with passion for AI research
+    </div>
   </footer>
 
-  <!-- Year Script -->
+  <!-- JavaScript -->
   <script>
+    // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    mobileToggle.addEventListener('click', () => {
+      mobileToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Header shadow on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cards and timeline events
+    document.querySelectorAll('.card, .event').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
